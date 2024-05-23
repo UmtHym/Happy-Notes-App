@@ -14,7 +14,7 @@
     <% todos.forEach( el => { %>
             <li class='todoItem' data-id='<%=el._id%>'>
                 <% if(el.completed) { %>
-                 <i class="fa-solid fa-square-check fa-bounce"></i>
+                 <i class="fa-solid fa-square-check"></i>
                 <span class='completed'><%= el.todo %></span>
                 <% } else { %>
                 <i class="fa-solid fa-square"></i>
