@@ -72,6 +72,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Your Name - @umthym - umitbcn@gmail.com
+Umit Hayim - @umthym - umitbcn@gmail.com
 
 Project Link: https://github.com/UmtHym/Happy-Notes-App
