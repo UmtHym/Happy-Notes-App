@@ -4,36 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
     <link href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Todos</h1>
-    <ul>
-    <% todos.forEach( el => { %>
-            <li class='todoItem' data-id='<%=el._id%>'>
-                <% if(el.completed) { %>
-                 <i class="fa-solid fa-square-check"></i>
-                <span class='completed'><%= el.todo %></span>
-                <% } else { %>
-                <i class="fa-solid fa-square"></i>
-                <span class="not"><%= el.todo %></span>
-                <% } %>
-                <span class='del'> Delete </span>
-            </li>
-    <% }) %>    
-    </ul>
+    <div class="container mt-5">
+        <h1 class="text-center">Todo List</h1>
 
-    <h2><%= user.userName %> has <%= left %> things left to do.</h2>
-
-    <form action="/todos/createTodo" method='POST'>
-        <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-        <input type="submit">
-    </form>
-
-    <a href="/logout">Logout</a>
-
-    <script src="js/main.js"></script>
+        <form action="/todos/createTodo" method='POST'>
+            <input type="text" placeholder="Enter Todo Item" name='todoItem'>
+            <input type="submit">
+        </form>
+        <h2><%= user.userName %> has <%= left %> things left to do.</h2>
+        <ul class="list-group">
+            <% todos.forEach( el => { %>
+                    <li class="list-group-item d-flex justify-content-between align-items-center" data-id='<%=el._id%>'>
+                        <% if(el.completed) { %>
+                        <i class="fa-solid fa-square-check"></i>
+                        <span class='completed'><%= el.todo %></span>
+                        <% } else { %>
+                        <i class="fa-solid fa-square"></i>
+                        <span class="not"><%= el.todo %></span>
+                        <% } %>
+                        <span class='del'> Delete </span>
+                    </li>
+            <% }) %>    
+        </ul>
+        <a href="/logout">Logout</a>
+    </div>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/js/main.js"></script>
 </body>
 </html>

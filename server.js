@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const path = require('path')
 const mongoose = require('mongoose')
 const passport = require('passport')
 const session = require('express-session')
@@ -11,6 +12,10 @@ const mainRoutes = require('./routes/main')
 const todoRoutes = require('./routes/todos')
 
 require('dotenv').config({path: './config/.env'})
+
+//Serve Bootstrap files from the 'public' directory
+app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')))
+app.use('/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')))
 
 // Passport config
 require('./config/passport')(passport)
