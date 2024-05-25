@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Happy Notes App is a full-featured, modern web application designed to help users manage their tasks and notes efficiently. Built using the MVC (Model-View-Controller) architecture, it leverages the power of Node.js, Express, and MongoDB, with Passport.js for secure authentication. This application offers a sleek, user-friendly interface implemented with EJS templating.
+Happy Notes App is a full-featured, modern web application designed to help users manage their tasks and notes efficiently. Built using the MVC (Model-View-Controller) architecture, it leverages the power of Node.js, Express, and MongoDB, with Passport.js for secure authentication. This application offers a sleek, user-friendly interface implemented with EJS templating and Bootstrap.
 
 ## Features
 
