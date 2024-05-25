@@ -47,9 +47,28 @@ module.exports = {
         try{
             await Todo.findOneAndDelete({_id:req.body.todoIdFromJSFile})
             console.log('Deleted Todo')
-            res.json('Deleted It')
+            res.json({ message: 'Deleted It' });
+
         }catch(err){
             console.log(err)
+        }
+    },
+    editTodo: async (req, res) => {
+        const { id } = req.params;
+        const { todo } = req.body;
+    
+        try {
+            const updatedTodo = await Todo.findByIdAndUpdate(id, { todo }, { new: true });
+    
+            if (!updatedTodo) {
+                return res.status(404).json({ error: 'Todo not found' });
+            }
+            
+            res.json(updatedTodo);
+
+        } catch (error) {
+            console.error('Error:', error);
+            res.status(500).json({ error: 'Server error' });
         }
     }
 }    

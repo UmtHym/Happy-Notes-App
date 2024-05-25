@@ -1,6 +1,7 @@
 const deleteBtn = document.querySelectorAll('.del')
 const todoItem = document.querySelectorAll('span.not')
 const todoComplete = document.querySelectorAll('span.completed')
+const editButtons = document.querySelectorAll('.edit')
 
 Array.from(deleteBtn).forEach((el)=>{
     el.addEventListener('click', deleteTodo)
@@ -14,11 +15,15 @@ Array.from(todoComplete).forEach((el)=>{
     el.addEventListener('click', markIncomplete)
 })
 
+Array.from(editButtons).forEach((el)=>{
+    el.addEventListener('click', editTodo)
+})
+
 async function deleteTodo(){
-    const todoId = this.parentNode.dataset.id
+    const todoId = this.getAttribute('data-id')
     try{
-        const response = await fetch('todos/deleteTodo', {
-            method: 'delete',
+        const response = await fetch(`todos/deleteTodo/${todoId}`, {
+            method: 'DELETE',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({
                 'todoIdFromJSFile': todoId
@@ -65,5 +70,28 @@ async function markIncomplete(){
         location.reload()
     }catch(err){
         console.log(err)
+    }
+}
+
+async function editTodo() {
+    const todoId = this.getAttribute('data-id')
+    const newTodo = prompt('Enter the new todo:')
+    
+    try {
+        const response = await fetch(`/todos/editTodo/${todoId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ todo: newTodo })
+        });
+        if (response.ok) {
+            location.reload()
+            
+        } else {
+            console.log('Error updating todo')
+        }
+    } catch (error) {
+        console.error('Error:', error)
     }
 }

@@ -12,29 +12,34 @@
 <body>
     <div class="container mt-5">
         <h1 class="text-center">Todo List</h1>
-
-        <form action="/todos/createTodo" method='POST'>
-            <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-            <input type="submit">
+        <form action="/todos/createTodo" method='POST' class="form-inline my-4">
+            <input type="text" placeholder="New Task" name='todoItem' class="form-control me-2">
+            <button type="submit" class="btn btn-primary">Add Task</button>
         </form>
-        <h2><%= user.userName %> has <%= left %> things left to do.</h2>
         <ul class="list-group">
-            <% todos.forEach( el => { %>
-                    <li class="list-group-item d-flex justify-content-between align-items-center" data-id='<%=el._id%>'>
-                        <% if(el.completed) { %>
+            <% todos.forEach(el => { %>
+                <li class="list-group-item d-flex justify-content-between align-items-center" data-id="<%= el._id %>">
+                    <% if (el.completed) { %>
                         <i class="fa-solid fa-square-check"></i>
-                        <span class='completed'><%= el.todo %></span>
-                        <% } else { %>
+                        <span class="completed"><%= el.todo %></span>
+                    <% } else { %>
                         <i class="fa-solid fa-square"></i>
                         <span class="not"><%= el.todo %></span>
-                        <% } %>
-                        <span class='del'> Delete </span>
-                    </li>
-            <% }) %>    
+                    <% } %>
+                    <div>
+                        <button class="btn btn-info btn-sm edit" data-id="<%= el._id %>">Edit</button>
+                        <button class="del btn btn-danger btn-sm" data-id="<%= el._id %>">Delete</button>
+                    </div>
+                </li>
+            <% }) %>
         </ul>
+        <div class="mt-4">
+            <p><strong>Tasks Left:</strong> <%= left %></p>
+        </div>
         <a href="/logout">Logout</a>
     </div>
-    <script src="/js/bootstrap.bundle.min.js"></script>
-    <script src="/public/js/main.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
