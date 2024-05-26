@@ -20,12 +20,13 @@
             <% todos.forEach(el => { %>
                 <li class="list-group-item d-flex justify-content-between align-items-center" data-id="<%= el._id %>">
                     <% if (el.completed) { %>
-                        <i class="fa-solid fa-square-check"></i>
+                        <i class="fa-regular fa-square-check"></i>
                         <span class="completed"><%= el.todo %></span>
                     <% } else { %>
-                        <i class="fa-solid fa-square"></i>
+                        <i class="fa-regular fa-square"></i>
                         <span class="not"><%= el.todo %></span>
                     <% } %>
+                    <div id="errorMessage" class="alert alert-danger mt-3" style="display: none;"></div>
                     <div>
                         <button class="btn btn-info btn-sm edit" data-id="<%= el._id %>">Edit</button>
                         <button class="del btn btn-danger btn-sm" data-id="<%= el._id %>">Delete</button>
@@ -36,7 +37,12 @@
         <div class="mt-4">
             <p><strong>Tasks Left:</strong> <%= left %></p>
         </div>
-        <a href="/logout">Logout</a>
+       <div class="col-auto">
+                <form action="/logout" method="GET">
+                    <button type="submit" class="btn btn-secondary">Logout</button>
+                </form>
+            </div>
+        </div>
     </div>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>

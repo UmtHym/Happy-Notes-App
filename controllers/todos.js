@@ -59,12 +59,12 @@ module.exports = {
     
         try {
             const updatedTodo = await Todo.findByIdAndUpdate(id, { todo }, { new: true });
-    
+
             if (!updatedTodo) {
                 return res.status(404).json({ error: 'Todo not found' });
             }
             
-            res.json(updatedTodo);
+            res.status(200).json({ message: 'Todo updated successfully' });
 
         } catch (error) {
             console.error('Error:', error);

@@ -76,7 +76,12 @@ async function markIncomplete(){
 async function editTodo() {
     const todoId = this.getAttribute('data-id')
     const newTodo = prompt('Enter the new todo:')
-    
+
+    if (!newTodo || newTodo.trim().length === 0) {
+        
+        alert('Please enter a todo with more than 0 characters.');
+        return;
+    }
     try {
         const response = await fetch(`/todos/editTodo/${todoId}`, {
             method: 'PUT',
